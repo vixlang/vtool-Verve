@@ -1,0 +1,8 @@
+[project]
+name = "vfmt"
+version = "0.1.0"
+description = "Vix 代码格式化工具"
+authors = []
+edition = "2024"
+
+deps = []

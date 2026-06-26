@@ -1,0 +1,18 @@
+# Vix
+*.o
+*.s
+*.out
+*.exe
+target/
+.very/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
