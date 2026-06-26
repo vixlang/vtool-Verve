@@ -75,7 +75,11 @@ fn format_one(path: ptr): bool {
 }
 
 fn main(): i32 {
-    system("dir /s /b *.vix 2>nul > .vfmt_list")
+    if (system("ver > nul 2>nul") == 0) {
+        system("dir /s /b *.vix > .vfmt_list")
+    } else {
+        system("find . -name \"*.vix\" 2>/dev/null > .vfmt_list")
+    }
     let flist = fopen(".vfmt_list", "r")
     if (flist == nil) {
         printf("No .vix files found.\n")
