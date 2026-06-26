@@ -42,7 +42,7 @@ fn count_brace(line: ptr, ch: i32): i32 {
 fn format_one(path: ptr): bool {
     let tmp = fopen(path, "r")
     if (tmp == nil) { return false }
-    let out = fopen(".vfmt_tmp", "w")
+    let out = fopen(".verve_tmp", "w")
     if (out == nil) { fclose(tmp); return false }
     let buf: ptr = malloc(65536)
     if (buf == nil) { fclose(tmp); fclose(out); return false }
@@ -69,18 +69,18 @@ fn format_one(path: ptr): bool {
         if (indent < 0) { indent = 0 }
     }
     fclose(tmp); fclose(out)
-    rename(".vfmt_tmp", path)
+    rename(".verve_tmp", path)
     free(buf)
     return true
 }
 
 fn main(): i32 {
     if (system("ver > nul 2>nul") == 0) {
-        system("dir /s /b *.vix > .vfmt_list")
+        system("dir /s /b *.vix > .verve_list")
     } else {
-        system("find . -name \"*.vix\" 2>/dev/null > .vfmt_list")
+        system("find . -name \"*.vix\" 2>/dev/null > .verve_list")
     }
-    let flist = fopen(".vfmt_list", "r")
+    let flist = fopen(".verve_list", "r")
     if (flist == nil) {
         printf("No .vix files found.\n")
         return 0
@@ -105,7 +105,7 @@ fn main(): i32 {
         }
     }
     fclose(flist)
-    remove(".vfmt_list")
+    remove(".verve_list")
     printf("\nDone: %d formatted, %d errors (total %d)\n", ok, err, total)
     free(buf)
     return 0
